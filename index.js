@@ -26,9 +26,22 @@ module.exports.byCountry = function(country) {
   return search('country', country)
 }
 
+module.exports.byCountryContain = function(country) {
+  return contain('country', country)
+}
+
 function search(field, code) {
   for (var i = 0; i < countries.length; i++) {
     if (countries[i][field] === code) {
+      return countries[i]
+    }
+  }
+  return null
+}
+
+function contain(field, code) {
+  for (var i = 0; i < countries.length; i++) {
+    if (countries[i][field].indexOf(code) > -1) {
       return countries[i]
     }
   }
